@@ -132,6 +132,37 @@ query MyQuery {
 }
 ```
 
+Beginning in Amplify CLI version 8.5.0, there is a feature flag named `enableautoindexquerynames`. If enabled, this flag allows configuration of secondary indexes without any explicit naming.
+
+For more information on feature flags, refer to the [feature flags reference](/cli/reference/feature-flags/).
+
+```graphql
+type Customer @model {
+  id: ID!
+  name: String!
+  phoneNumber: String
+  accountRepresentativeID: ID! @index
+}
+```
+
+The example client query below allows you to query for "Customer" based on their `accountRepresentativeID` using auto-generated index and query names:
+
+```graphql
+query QueryCustomersForAccountRepresentative($accountRepresentativeID: ID!) {
+  customersByAccountRepresentativeID(accountRepresentativeID: $accountRepresentativeID) {
+    customers {
+      items {
+        id
+        name
+        phoneNumber
+      }
+    }
+  }
+}
+```
+
+To opt out of query generation for these indexes, setting the `queryField` parameter to `null` will disable the query in the generated schema.
+
 ## Setup relationships between models
 
 Create "has one", "has many", "belongs to", and "many to many" relationships between `@model` types.

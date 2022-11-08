@@ -532,6 +532,7 @@
     "electron",
     "email_verified",
     "emailpassword",
+    "enableautoindexquerynames",
     "endraw",
     "enqueued",
     "entryComponent",
