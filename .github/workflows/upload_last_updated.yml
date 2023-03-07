@@ -1,0 +1,37 @@
+name: Upload Last Updated
+on:
+  push:
+    branches: [main]
+permissions:
+  pull-requests: write # used to remove label
+  id-token: write
+  contents: read
+jobs:
+  build:
+    name: Upload Last Updated
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@main
+        with:
+          node-version: 14.x
+      - name: Install Dependencies
+        run: yarn
+      - name: Add Last Updated
+        run: yarn task addLastUpdatedToMdxFiles
+      - name: Run Build
+        run: yarn build
+        env:
+          NODE_OPTIONS: --max_old_space_size=4096
+      - name: Create Updated CSV
+        run: yarn extract-updated
+      - uses: shallwefootball/s3-upload-action@master
+        name: Upload S3
+        id: S3
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: 'updatedDates.csv'

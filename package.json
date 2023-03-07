@@ -133,6 +133,6 @@
     "postinstall": "yarn setup",
     "setup": "node build_support/create-awsconfig.mjs",
     "prepare": "husky install",
-    "extract-updated": "start-server-and-test 3000 'yarn task extractUpdated'"
+    "extract-updated": "start-server-and-test 'yarn next-start' 3000 'node ./tasks/extractUpdated.mjs'"
   }
 }
