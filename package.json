@@ -126,6 +126,7 @@
   "scripts": {
     "clean": "rm -rf node_modules yarn.lock",
     "refresh": "yarn clean && yarn",
+    "task": "ts-node tasks",
     "test": "jest",
     "dev": "next dev",
     "spellcheck": "cspell \"src/**/*.mdx\"",
