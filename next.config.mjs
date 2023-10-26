@@ -63,6 +63,7 @@ export default async (phase, { defaultConfig }) => {
       deviceSizes: [450, 1920]
     },
     pageExtensions: ['js', 'jsx', 'mdx', 'tsx', 'ts'],
+    productionBrowserSourceMaps: false,
     typescript: {
       // !! WARN !!
       // Dangerously allow production builds to successfully complete even if
