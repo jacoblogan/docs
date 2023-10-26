@@ -57,6 +57,10 @@ export default async (phase, { defaultConfig }) => {
       // `placeholder="empty"` to all <ExportedImage> components.
       nextImageExportOptimizer_generateAndUseBlurImages: true
     },
+    experimental: {
+      workerThreads: false,
+      cpus: 1
+    },
     images: {
       loader: 'custom',
       imageSizes: [],
