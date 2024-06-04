@@ -16,8 +16,13 @@ jobs:
               uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
             - name: Set Branch Name
               run: echo "BRANCH_NAME=$(echo $(date +%s))" >> $GITHUB_ENV
-            - name: Test
-              run: echo "${{ env.BRANCH_NAME }}"
+            - name: Create new branch
+              run: |
+                git checkout -b ${{ env.BRANCH_NAME }}
+                curl -L -o ${{ vars.REF_LOC }} ${{ vars.REMOTE_REF }}
+                git add ${{ vars.REF_LOC }}
+                git commit -m "updating references"
+                git push
             - name: Create Pull Request
               run: gh pr create -B main -H test --title 'Merge test into main' --body 'Created by Github action'
     
