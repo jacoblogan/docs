@@ -18,10 +18,12 @@ jobs:
               run: echo "BRANCH_NAME=$(echo $(date +%s))" >> $GITHUB_ENV
             - name: Create new branch
               run: |
+                git config user.email "you@example.com"
+                git config user.name "Your Name"
                 git checkout -b ${{ env.BRANCH_NAME }}
                 curl -L -o ${{ vars.REF_LOC }} ${{ vars.REMOTE_REF }}
                 git add ${{ vars.REF_LOC }}
-                git commit --author="Automated <>" -m "updating references"
+                git commit -m "updating references"
                 git push
             - name: Create Pull Request
               run: gh pr create -B main -H ${{ env.BRANCH_NAME }} --title 'Merge ${{ env.BRANCH_NAME }} into main' --body 'Created by Github action'
