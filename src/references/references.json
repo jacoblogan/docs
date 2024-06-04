@@ -9,7 +9,7 @@
             "option": "path",
             "required": "yes",
             "type": ["string", "callback"],
-            "description": "the path prefix for files to include test"
+            "description": "the path prefix for files to include updated"
           },
           {
             "option": "listAll",
