@@ -4,10 +4,14 @@ on:
   # Listen to a repository dispatch event by the name of `dispatch-event`
   repository_dispatch:
     types: [update-references]
+  workflow_dispatch:
 
 jobs:
-  log:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Event received
-        run: echo "Event received"
+    create-pull-request:
+        runs-on: ubuntu-latest
+        steps:
+          - name: Create Pull Request
+            run: gh pr create -B main -H test --title 'Merge test into main' --body 'Created by Github action'
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
