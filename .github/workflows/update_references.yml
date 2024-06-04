@@ -15,7 +15,7 @@ jobs:
             - name: Checkout Repo
               uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
             - name: Set Branch Name
-              run: echo "BRANCH_NAME=$(echo date +%s)" >> $GITHUB_ENV
+              run: echo "BRANCH_NAME=$(echo $(date +%s))" >> $GITHUB_ENV
             - name: Test
               run: echo "${{ env.BRANCH_NAME }}"
             - name: Create Pull Request
