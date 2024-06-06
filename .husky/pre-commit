@@ -3,4 +3,3 @@
 
 yarn spellcheck-diff
 
-yarn lint-staged

@@ -7,11 +7,14 @@ import { PageNode } from 'src/directory/directory';
  * @returns
  */
 export const getChildPageNodes = (route: string) => {
+  console.log('ROUTE!!!!');
+  console.log(route);
   return traverseDirectory(route, directory as PageNode) || [];
 };
 
 function traverseDirectory(route: string, node: PageNode) {
   if (node.route === route) {
+    console.log(node.children);
     return node.children;
   }
 

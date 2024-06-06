@@ -13,6 +13,8 @@ export function Overview({ childPageNodes }: OverviewProps) {
   const router = useRouter();
   const currentPlatform = router.query.platform as Platform;
 
+  // console.log(childPageNodes)
+
   if (!childPageNodes) {
     return <></>;
   }

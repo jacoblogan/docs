@@ -6,6 +6,21 @@ import JSON5 from 'json5';
 import { directory } from './directory.mjs';
 import { writeFile } from 'fs/promises';
 import { getLastModifiedDate } from 'git-jiggy';
+import references from '../references/references.json' assert { type: 'json' };
+
+export const findDirectoryNode = (route, dir) => {
+  if (dir.route === route) {
+    return dir;
+  } else if (dir.children && dir.children.length) {
+    for (let i = 0; i < dir.children.length; i++) {
+      const child = dir.children[i];
+      const res = findDirectoryNode(route, child);
+      if (res) return res;
+    }
+  }
+
+  return null;
+};
 
 // Set up the root path so that we can get the correct path from the current working directory
 const rootPath = path.resolve(cwd(), 'src/pages');
@@ -121,6 +136,22 @@ async function generateDirectory() {
   const directoryCopy = { ...directory };
 
   await traverseDirectoryObject(directoryCopy);
+
+  const platform = Object.keys(references)[0];
+  const platformRef = references[platform];
+  const categoryKeys = Object.keys(platformRef);
+  categoryKeys.forEach((cat) => {
+    const route = `/[platform]/build-a-backend/${cat}`;
+    const catNode = findDirectoryNode(route, directoryCopy);
+    if (catNode) {
+      catNode.children.push({
+        title: `Amplify JS API References - ${cat}`,
+        description: `Amplify JS API References - ${cat}`,
+        platforms: [platform],
+        route: `${route}/reference`
+      });
+    }
+  });
 
   try {
     const __filename = fileURLToPath(import.meta.url);
