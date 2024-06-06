@@ -6,7 +6,7 @@ export const ReferencePages = ({ platform, category }) => {
     const functions = Object.keys(refObject);
     return (
         <>
-            {functions.map((fn) => <ReferencePage platform={platform} category={category} fn={fn} />)}
+            {functions.map((fn) => <ReferencePage platform={platform} category={category} fn={fn} key={`${platform}-${category}`} />)}
         </>
     )
 }
