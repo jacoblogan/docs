@@ -36,12 +36,5 @@ export const ReferencePage = ({ platform, category, fn }) => {
         <ReferenceExample
             text={references[platform][category][fn].example}
         />
-
-        <MDXHeading level={3}>Types:</MDXHeading>
-
-        <ReferenceExample
-            text={references[platform][category][fn].types}
-            language={'tsx'}
-        />
     </>)
 }
