@@ -7,6 +7,7 @@ import { directory } from './directory.mjs';
 import { writeFile } from 'fs/promises';
 import { getLastModifiedDate } from 'git-jiggy';
 import references from '../references/references.json' assert { type: 'json' };
+import apiCategories from '../references/apiCategories.json' assert { type: 'json' };
 
 export const findDirectoryNode = (route, dir) => {
   if (dir.route === route) {
@@ -141,9 +142,21 @@ async function generateDirectory() {
   const platformRef = references[platform];
   const categoryKeys = Object.keys(platformRef);
   categoryKeys.forEach((cat) => {
+    const route = `/[platform]/build-a-backend/add-aws-services/${cat}`;
+    const catNode = findDirectoryNode(route, directoryCopy);
+    if (catNode && apiCategories['add-aws-services'].includes(cat)) {
+      catNode.children.push({
+        title: `Amplify JS API References - ${cat}`,
+        description: `Amplify JS API References - ${cat}`,
+        platforms: [platform],
+        route: `${route}/reference`
+      });
+    }
+  });
+  categoryKeys.forEach((cat) => {
     const route = `/[platform]/build-a-backend/${cat}`;
     const catNode = findDirectoryNode(route, directoryCopy);
-    if (catNode) {
+    if (catNode && apiCategories['build-a-backend'].includes(cat)) {
       catNode.children.push({
         title: `Amplify JS API References - ${cat}`,
         description: `Amplify JS API References - ${cat}`,

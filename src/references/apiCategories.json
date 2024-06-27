@@ -1,0 +1,4 @@
+{
+  "build-a-backend": ["storage"],
+  "add-aws-services": ["analytics"]
+}
