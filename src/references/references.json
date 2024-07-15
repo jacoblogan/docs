@@ -36,55 +36,16 @@
             "description": "Whether to use accelerate endpoint"
           }
         ],
-        "returns": {
-          "values": [
-            {
-              "type": "ListReturnObject",
-              "description": "A list of objects with path and metadata: eTag, lastModified, size for each file"
-            },
-            {
-              "type": "nextToken",
-              "description": "nextToken"
-            }
-          ],
-          "example": "{\n          items: [\n            {\n              path: \"photos/123.jpg\",\n              eTag: \"30074401292215403a42b0739f3b5262\",\n              lastModified: \"Thu Oct 08 2020 23:59:31 GMT+0800 (Singapore Standard Time)\",\n              size: 138256\n            },\n            // ...\n          ],\n          nextToken:  'whatever a token looks like',\n        }"
-        },
-        "example": "import { list } from 'aws-amplify/storage';\n\n        try {\n          const result = await list({\n            path: 'photos/'\n            // Alternatively, path: ({identityId}) => `album/{identityId}/photos/`\n          });\n        } catch (error) {\n          console.log(error);\n        }",
-        "types": "interface AuthSession {\n          credentials?: AWSCredentials;\n          identityId?: string;\n          tokens?: AuthTokens;\n          userSub?: string;\n        }"
-      },
-      "listAll": {
-        "title": "listAll",
-        "description": "List all files in a storage bucket that are prefixed by a specified path name. Files are paginated. `pageSize` is defaulted to 1000. Additionally, the result will include a nextToken if there are more items to retrieve.",
-        "options": [
+        "throws": [
           {
-            "option": "path",
-            "required": "yes",
-            "type": ["string", "callback"],
-            "description": "the path prefix for files to include updated"
+            "type": "service",
+            "errorName": "S3Exception",
+            "message": "S3 service errors thrown when checking for existence of bucket"
           },
           {
-            "option": "listAll",
-            "required": "no",
-            "type": "boolean",
-            "description": "Whether to list all files within the specified path"
-          },
-          {
-            "option": "pageSize",
-            "required": "no",
-            "type": "int",
-            "description": "Sets the maximum number of files to be return. The range is 0 - 1000"
-          },
-          {
-            "option": "nextToken",
-            "required": "no",
-            "type": "string",
-            "description": "Indicates whether the list is being continued on this bucket with a token"
-          },
-          {
-            "option": "useAccelerateEndpoint",
-            "required": "no",
-            "type": "boolean",
-            "description": "Whether to use accelerate endpoint"
+            "type": "validation",
+            "errorName": "StorageValidationErrorCode",
+            "message": "thrown when there are issues with credentials"
           }
         ],
         "returns": {
@@ -98,9 +59,38 @@
               "description": "nextToken"
             }
           ],
-          "example": "{\n          items: [\n            {\n              path: \"photos/123.jpg\",\n              eTag: \"30074401292215403a42b0739f3b5262\",\n              lastModified: \"Thu Oct 08 2020 23:59:31 GMT+0800 (Singapore Standard Time)\",\n              size: 138256\n            },\n            // ...\n          ],\n          nextToken:  'whatever a token looks like',\n        }"
+          "example": "{\n    items: [\n        {\n            path: \"photos/123.jpg\",\n            eTag: \"30074401292215403a42b0739f3b5262\",\n            lastModified: \"Thu Oct 08 2020 23:59:31 GMT+0800 (Singapore Standard Time)\",\n            size: 138256\n        },\n        // ...\n    ],\n    nextToken:  'whatever a token looks like',\n}"
         },
-        "example": "import { list } from 'aws-amplify/storage';\n\n        try {\n          const result = await list({\n            path: 'photos/'\n            // Alternatively, path: ({identityId}) => `album/{identityId}/photos/`\n          });\n        } catch (error) {\n          console.log(error);\n        }",
+        "example": "import { list } from 'aws-amplify/storage';\n\ntry {\n    const result = await list({\n        path: 'photos/'\n        // Alternatively, path: ({identityId}) => `album/{identityId}/photos/`\n    });\n} catch (error) {\n    console.log(error);\n}",
+        "types": "interface AuthSession {\n          credentials?: AWSCredentials;\n          identityId?: string;\n          tokens?: AuthTokens;\n          userSub?: string;\n        }"
+      },
+      "getProperties": {
+        "title": "getProperties",
+        "description": "Gets the properties of a file. The properties include S3 system metadata and the user metadata that was provided when uploading the file.",
+        "options": [
+          {
+            "option": "path",
+            "required": "yes",
+            "type": ["string", "callback"],
+            "description": "the path prefix for files to include updated"
+          },
+          {
+            "option": "useAccelerateEndpoint",
+            "required": "no",
+            "type": "boolean",
+            "description": "Whether to use accelerate endpoint."
+          }
+        ],
+        "returns": {
+          "values": [
+            {
+              "type": "GetPropertiesWithPathOutput",
+              "description": "Requested object properties."
+            }
+          ],
+          "example": "{\n    path: \"album/2024/1.jpg\",\n    contentType: \"image/jpeg\",\n    contentLength: 6873,\n    eTag: \"\\\"56b32cf4779ff6ca3ba3f2d455fa56a7\\\"\n    lastModified: Wed Apr 19 2023 14:20:55 GMT-0700 (Pacific Daylight Time) {},\n    metadata: { owner: 'aws' }\n}"
+        },
+        "example": "import { getProperties } from 'aws-amplify/storage';\n\ntry {\n    const result = await getProperties({\n        path: 'album/2024/1.jpg'\n    });\n    console.log('File Properties ', result);\n} catch (error) {\n    console.log('Error ', error);\n}",
         "types": "interface AuthSession {\n          credentials?: AWSCredentials;\n          identityId?: string;\n          tokens?: AuthTokens;\n          userSub?: string;\n        }"
       }
     },

@@ -1,13 +1,9 @@
-export const ReferenceList = () => {
+export const ReferenceList = ({ items }) => {
   return (
     <ul>
-      <li>
-        A list of objects with path and metadata: <code>eTag</code>,{' '}
-        <code>lastModified</code>, <code>size</code> for each file
-      </li>
-      <li>
-        <code>nextToken</code>
-      </li>
+      {items.map((item, i) => {
+        return <li key={i}>{item.description}</li>
+      })}
     </ul>
   );
 };

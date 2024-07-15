@@ -3,6 +3,7 @@ import { ReferenceTable } from './ReferenceTable';
 import { ReferenceExample } from './ReferenceExample';
 import { ReferenceList } from './ReferenceList';
 import { MDXHeading } from '../MDXComponents';
+import { ReferenceThrows } from './ReferenceThrows';
 
 
 export const ReferencePage = ({ platform, category, fn }) => {
@@ -16,6 +17,8 @@ export const ReferencePage = ({ platform, category, fn }) => {
         <ReferenceTable
             options={references[platform][category][fn].options}
         />
+
+        <ReferenceThrows errors={references[platform][category][fn].throws} />
 
         <MDXHeading level={3}>Returns:</MDXHeading>
 
