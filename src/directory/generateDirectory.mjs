@@ -146,8 +146,8 @@ async function generateDirectory() {
     const catNode = findDirectoryNode(route, directoryCopy);
     if (catNode && apiCategories['add-aws-services'].includes(cat)) {
       catNode.children.push({
-        title: `Amplify JS API References - ${cat}`,
-        description: `Amplify JS API References - ${cat}`,
+        title: `API References - ${cat}`,
+        description: `API References - ${cat}`,
         platforms: [platform],
         route: `${route}/reference`
       });
@@ -158,8 +158,8 @@ async function generateDirectory() {
     const catNode = findDirectoryNode(route, directoryCopy);
     if (catNode && apiCategories['build-a-backend'].includes(cat)) {
       catNode.children.push({
-        title: `Amplify JS API References - ${cat}`,
-        description: `Amplify JS API References - ${cat}`,
+        title: `API References - ${cat}`,
+        description: `API References - ${cat}`,
         platforms: [platform],
         route: `${route}/reference`
       });

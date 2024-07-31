@@ -61,8 +61,7 @@
           ],
           "example": "{\n    items: [\n        {\n            path: \"photos/123.jpg\",\n            eTag: \"30074401292215403a42b0739f3b5262\",\n            lastModified: \"Thu Oct 08 2020 23:59:31 GMT+0800 (Singapore Standard Time)\",\n            size: 138256\n        },\n        // ...\n    ],\n    nextToken:  'whatever a token looks like',\n}"
         },
-        "example": "import { list } from 'aws-amplify/storage';\n\ntry {\n    const result = await list({\n        path: 'photos/'\n        // Alternatively, path: ({identityId}) => `album/{identityId}/photos/`\n    });\n} catch (error) {\n    console.log(error);\n}",
-        "types": "interface AuthSession {\n          credentials?: AWSCredentials;\n          identityId?: string;\n          tokens?: AuthTokens;\n          userSub?: string;\n        }"
+        "example": "import { list } from 'aws-amplify/storage';\n\ntry {\n    const result = await list({\n        path: 'photos/'\n        // Alternatively, path: ({identityId}) => `album/{identityId}/photos/`\n    });\n} catch (error) {\n    console.log(error);\n}"
       },
       "getProperties": {
         "title": "getProperties",
