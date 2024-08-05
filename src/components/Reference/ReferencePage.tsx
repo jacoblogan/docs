@@ -1,12 +1,11 @@
 import references from '@/references/nestedReferences.json'
 import { ReferenceTable } from './ReferenceTable';
 import { ReferenceExample } from './ReferenceExample';
-import { ReferenceList } from './ReferenceList';
 import { MDXHeading } from '../MDXComponents';
 import { ReferenceThrows } from './ReferenceThrows';
 
 
-export const ReferencePage = ({ platform, category, fn }) => {
+export const ReferencePage = ({ fn }) => {
     return (<>
         <MDXHeading level={2}>{references[fn].name}</MDXHeading>
 

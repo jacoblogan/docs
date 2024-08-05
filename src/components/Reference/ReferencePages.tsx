@@ -1,7 +1,6 @@
-import references from '@/references/references.json'
 import { ReferencePage } from './ReferencePage';
 import nestedReferences from '@/references/nestedReferences.json';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 import { ApiModal } from './ApiModal';
 
 export const TypeContext = createContext({});

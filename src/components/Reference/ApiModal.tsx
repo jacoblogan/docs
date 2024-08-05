@@ -1,4 +1,4 @@
-import { View, Flex, Heading, Card, Divider, Text, Button } from '@aws-amplify/ui-react'
+import { View, Flex, Heading, Card, Divider, Button } from '@aws-amplify/ui-react'
 import { IconX } from '../Icons'
 import { Type } from './TypeLink';
 
@@ -24,11 +24,11 @@ export const ApiModal = ({ data, showModal, close }) => {
     if (typeData.type === 'alias') {
       recursivelyParseType(typeData.value, displayProperties);
     } else if (typeData.type === 'intersection') {
-      for (let key in typeData.types) {
+      for (const key in typeData.types) {
         recursivelyParseType(typeData.types[key], displayProperties);
       }
     } else if (typeData.type === 'union') {
-      for (let key in typeData.elements) {
+      for (const key in typeData.elements) {
         recursivelyParseType(typeData.elements[key], displayProperties);
       }
     } else if (typeData.type === 'object' || typeData.type === 'interface') {
@@ -44,7 +44,7 @@ export const ApiModal = ({ data, showModal, close }) => {
   let displayTypes;
   if (Object.keys(displayProperties).length) {
     displayTypes = Object.keys(displayProperties).map((key) => {
-      return <DisplayType data={displayProperties[key]} />
+      return <DisplayType key={key} data={displayProperties[key]} />
     });
   }
   return (

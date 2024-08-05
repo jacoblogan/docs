@@ -68,7 +68,7 @@ const IntersectionType = ({ data }) => {
   return (
     <View>
       {data.types.map((t, idx) => {
-        return (<View><TypeLink linkData={t} /> {idx < data.types.length - 1 && <span>&</span>} </View>)
+        return (<View key={idx}><TypeLink linkData={t} /> {idx < data.types.length - 1 && <span>&</span>} </View>)
       })}
     </View>
   )
@@ -79,7 +79,7 @@ const UnionType = ({ data }) => {
   return (
     <View>
       {data.elements.map((t, idx) => {
-        return (<View><TypeLink linkData={t} /> {idx < data.elements.length - 1 && <span>|</span>} </View>)
+        return (<View key={idx}><TypeLink linkData={t} /> {idx < data.elements.length - 1 && <span>|</span>} </View>)
       })}
     </View>
   )
@@ -110,9 +110,9 @@ const InterfaceType = ({ data }) => {
   // should render the "properties" as types
   return (
     <View>
-      {Object.keys(data.properties).map((key) => {
+      {Object.keys(data.properties).map((key, idx) => {
         return (
-          <Flex>
+          <Flex key={idx}>
             {data.properties[key].name}: <Type typeData={data.properties[key]} />
           </Flex>
         )
@@ -130,7 +130,7 @@ const IdentifierType = ({ data }) => {
   }
 }
 
-const StringType = ({ data }) => {
+const StringType = ({ }) => {
   return (<code>string</code>)
 }
 
