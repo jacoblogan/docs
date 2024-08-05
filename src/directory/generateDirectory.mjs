@@ -158,7 +158,7 @@ async function generateDirectory() {
     const catNode = findDirectoryNode(route, directoryCopy);
     if (catNode && apiCategories['build-a-backend'].includes(cat)) {
       catNode.children.push({
-        title: `API References - ${cat}`,
+        title: `API Reference`,
         description: `API References - ${cat}`,
         platforms: [platform],
         route: `${route}/reference`

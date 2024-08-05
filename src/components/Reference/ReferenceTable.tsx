@@ -1,4 +1,9 @@
+import { Type } from "./TypeLink";
+import { useContext } from 'react';
+import { TypeContext } from "./ReferencePages";
+
 export const ReferenceTable = ({ options }) => {
+  const { modalOpen } = useContext(TypeContext);
   return (
     <table>
       <thead>
@@ -6,31 +11,18 @@ export const ReferenceTable = ({ options }) => {
           <th>Option</th>
           <th>Required</th>
           <th>Type</th>
-          <th></th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
         {options.map((option) => {
-          let type;
-          if (Array.isArray(option.type)) {
-            type = option.type.map((t, idx) => {
-              return (
-                <>
-                  {idx > 0 ? ' or ' : ''}
-                  <code>{t}</code>
-                </>
-              );
-            });
-          } else {
-            type = <code>{option.type}</code>;
-          }
           return (
             <tr key={option.option}>
               <td>
-                <code>{option.option}</code>
+                <code>{option.name}</code>
               </td>
-              <td>{option.required}</td>
-              <td>{type}</td>
+              <td>{option.optional ? 'false' : 'true'}</td>
+              <td onClick={modalOpen}><Type typeData={option.value} /></td>
               <td>{option.description}</td>
             </tr>
           );

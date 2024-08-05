@@ -1,4 +1,4 @@
-import references from '@/references/references.json'
+import references from '@/references/nestedReferences.json'
 import { ReferenceTable } from './ReferenceTable';
 import { ReferenceExample } from './ReferenceExample';
 import { ReferenceList } from './ReferenceList';
@@ -8,36 +8,37 @@ import { ReferenceThrows } from './ReferenceThrows';
 
 export const ReferencePage = ({ platform, category, fn }) => {
     return (<>
-        <MDXHeading level={2}>{references[platform][category][fn].title}</MDXHeading>
+        <MDXHeading level={2}>{references[fn].name}</MDXHeading>
 
-        {references[platform][category][fn].description}
+        {references[fn].description}
 
-        <MDXHeading level={3}>Options:</MDXHeading>
+        <MDXHeading level={3}>Parameters:</MDXHeading>
 
         <ReferenceTable
-            options={references[platform][category][fn].options}
+            options={references[fn].parameters} // update here
         />
 
-        <ReferenceThrows errors={references[platform][category][fn].throws} />
+        <ReferenceThrows errors={references[fn].throws} />
 
         <MDXHeading level={3}>Returns:</MDXHeading>
 
-        <ReferenceList
-            items={
-                references[platform][category][fn].returns.values
-            }
-        />
+        {references[fn].return.description}
 
+        {/* <ReferenceList
+            items={
+                references[fn].return
+            }
+        /> */}
         <ReferenceExample
-            text={
-                references[platform][category][fn].returns.example
+            example={
+                references[fn].returnExample
             }
         />
 
         <MDXHeading level={3}>Example:</MDXHeading>
 
         <ReferenceExample
-            text={references[platform][category][fn].example}
+            example={references[fn].example}
         />
     </>)
 }

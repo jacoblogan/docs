@@ -1,7 +1,6 @@
 import { MDXHeading } from '../MDXComponents';
 
 export const ReferenceThrows = ({ errors }) => {
-    console.log(errors);
     if (!errors || !errors.length) return;
 
     const generateErrorString = (error) => {

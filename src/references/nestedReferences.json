@@ -1,0 +1,445 @@
+{
+  "uploadData": {
+    "type": "function",
+    "id": "uploadData",
+    "name": "uploadData",
+    "parameters": [
+      {
+        "type": "parameter",
+        "name": "input",
+        "value": {
+          "type": "reference",
+          "local": "UploadDataInput",
+          "imported": "UploadDataInput",
+          "specifier": "../../types",
+          "typeObject": {
+            "type": "alias",
+            "id": "UploadDataInput",
+            "name": "UploadDataInput",
+            "value": {
+              "type": "application",
+              "base": {
+                "type": "reference",
+                "local": "StorageUploadDataInputWithKey",
+                "imported": "StorageUploadDataInputWithKey",
+                "specifier": "../../../types",
+                "typeObject": {
+                  "type": "alias",
+                  "id": "StorageUploadDataInputWithKey",
+                  "name": "StorageUploadDataInputWithKey",
+                  "value": {
+                    "type": "intersection",
+                    "types": [
+                      {
+                        "type": "identifier",
+                        "name": "StorageOperationInputWithKey",
+                        "typeObject": {
+                          "type": "interface",
+                          "id": "StorageOperationInputWithKey",
+                          "name": "StorageOperationInputWithKey",
+                          "extends": [],
+                          "properties": {
+                            "key": {
+                              "type": "property",
+                              "name": "key",
+                              "value": { "type": "string" },
+                              "optional": false,
+                              "access": "private",
+                              "default": null
+                            }
+                          },
+                          "typeParameters": [],
+                          "description": "Description for StorageOperationInputWithKey",
+                          "access": "private"
+                        }
+                      },
+                      {
+                        "type": "application",
+                        "base": {
+                          "type": "identifier",
+                          "name": "StorageOperationOptionsInput",
+                          "typeObject": {
+                            "type": "interface",
+                            "id": "StorageOperationOptionsInput",
+                            "name": "StorageOperationOptionsInput",
+                            "extends": [],
+                            "properties": {
+                              "options": {
+                                "type": "property",
+                                "name": "options",
+                                "value": {
+                                  "type": "identifier",
+                                  "name": "Options"
+                                },
+                                "optional": true,
+                                "default": null
+                              }
+                            },
+                            "typeParameters": [
+                              {
+                                "type": "typeParameter",
+                                "name": "Options",
+                                "constraint": null,
+                                "default": null
+                              }
+                            ]
+                          }
+                        },
+                        "typeParameters": [
+                          { "type": "identifier", "name": "Options" }
+                        ]
+                      },
+                      {
+                        "type": "identifier",
+                        "name": "StorageUploadDataInputPayload",
+                        "typeObject": {
+                          "type": "interface",
+                          "id": "StorageUploadDataInputPayload",
+                          "name": "StorageUploadDataInputPayload",
+                          "extends": [],
+                          "properties": {
+                            "data": {
+                              "type": "property",
+                              "name": "data",
+                              "value": {
+                                "type": "identifier",
+                                "name": "StorageUploadDataPayload",
+                                "typeObject": {
+                                  "type": "alias",
+                                  "id": "StorageUploadDataPayload",
+                                  "name": "StorageUploadDataPayload",
+                                  "value": {
+                                    "type": "union",
+                                    "elements": [
+                                      { "type": "identifier", "name": "Blob" },
+                                      {
+                                        "type": "identifier",
+                                        "name": "ArrayBufferView"
+                                      },
+                                      {
+                                        "type": "identifier",
+                                        "name": "ArrayBuffer"
+                                      },
+                                      { "type": "string" }
+                                    ]
+                                  },
+                                  "typeParameters": [],
+                                  "description": "The data payload type for upload operation."
+                                }
+                              },
+                              "optional": false,
+                              "default": null
+                            }
+                          },
+                          "typeParameters": []
+                        }
+                      }
+                    ]
+                  },
+                  "typeParameters": [
+                    {
+                      "type": "typeParameter",
+                      "name": "Options",
+                      "constraint": {
+                        "type": "reference",
+                        "local": "StorageOptions",
+                        "imported": "StorageOptions",
+                        "specifier": "./options"
+                      },
+                      "default": null
+                    }
+                  ],
+                  "description": null,
+                  "access": "private"
+                }
+              },
+              "typeParameters": [
+                {
+                  "type": "reference",
+                  "local": "UploadDataOptionsWithKey",
+                  "imported": "UploadDataOptionsWithKey",
+                  "specifier": "../types",
+                  "typeObject": {
+                    "type": "alias",
+                    "id": "UploadDataOptionsWithKey",
+                    "name": "UploadDataOptionsWithKey",
+                    "value": {
+                      "type": "intersection",
+                      "types": [
+                        { "type": "identifier", "name": "WriteOptions" },
+                        {
+                          "type": "identifier",
+                          "name": "UploadDataOptions",
+                          "typeObject": {
+                            "type": "alias",
+                            "id": "UploadDataOptions",
+                            "name": "UploadDataOptions",
+                            "value": {
+                              "type": "intersection",
+                              "types": [
+                                {
+                                  "type": "identifier",
+                                  "name": "CommonOptions"
+                                },
+                                {
+                                  "type": "identifier",
+                                  "name": "TransferOptions"
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "contentDisposition": {
+                                      "type": "property",
+                                      "name": "contentDisposition",
+                                      "value": { "type": "string" },
+                                      "optional": true,
+                                      "description": "The default content-disposition header value of the file when downloading it.",
+                                      "default": null
+                                    },
+                                    "contentEncoding": {
+                                      "type": "property",
+                                      "name": "contentEncoding",
+                                      "value": { "type": "string" },
+                                      "optional": true,
+                                      "description": "The default content-encoding header value of the file when downloading it.",
+                                      "default": null
+                                    },
+                                    "contentType": {
+                                      "type": "property",
+                                      "name": "contentType",
+                                      "value": { "type": "string" },
+                                      "optional": true,
+                                      "description": "The default content-type header value of the file when downloading it.",
+                                      "default": null
+                                    },
+                                    "metadata": {
+                                      "type": "property",
+                                      "name": "metadata",
+                                      "value": {
+                                        "type": "application",
+                                        "base": {
+                                          "type": "identifier",
+                                          "name": "Record"
+                                        },
+                                        "typeParameters": [
+                                          { "type": "string" },
+                                          { "type": "string" }
+                                        ]
+                                      },
+                                      "optional": true,
+                                      "description": "The user-defined metadata for the object uploaded to S3.",
+                                      "default": null
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            "typeParameters": [],
+                            "description": null
+                          }
+                        }
+                      ]
+                    },
+                    "typeParameters": [],
+                    "description": null,
+                    "access": "private"
+                  }
+                }
+              ]
+            },
+            "typeParameters": [],
+            "description": null,
+            "access": "private"
+          }
+        },
+        "rest": false,
+        "description": "A `UploadDataInput` object."
+      }
+    ],
+    "return": {
+      "type": "reference",
+      "local": "UploadDataOutput",
+      "imported": "UploadDataOutput",
+      "specifier": "../../types",
+      "description": "A cancelable and resumable task exposing result promise from the `result` property.",
+      "typeObject": {
+        "type": "alias",
+        "id": "UploadDataOutput",
+        "name": "UploadDataOutput",
+        "value": {
+          "type": "application",
+          "base": {
+            "type": "reference",
+            "local": "UploadTask",
+            "imported": "UploadTask",
+            "specifier": "../../../types"
+          },
+          "typeParameters": [
+            {
+              "type": "identifier",
+              "name": "ItemWithKey",
+              "typeObject": {
+                "type": "alias",
+                "id": "ItemWithKey",
+                "name": "ItemWithKey",
+                "value": {
+                  "type": "intersection",
+                  "types": [
+                    {
+                      "type": "identifier",
+                      "name": "ItemBase",
+                      "typeObject": {
+                        "type": "interface",
+                        "id": "ItemBase",
+                        "name": "ItemBase",
+                        "extends": [],
+                        "properties": {
+                          "versionId": {
+                            "type": "property",
+                            "name": "versionId",
+                            "value": { "type": "string" },
+                            "optional": true,
+                            "description": "VersionId used to reference a specific version of the object.",
+                            "default": null
+                          },
+                          "contentType": {
+                            "type": "property",
+                            "name": "contentType",
+                            "value": { "type": "string" },
+                            "optional": true,
+                            "description": "A standard MIME type describing the format of the object data.",
+                            "default": null
+                          }
+                        },
+                        "typeParameters": [],
+                        "description": "Base type for an S3 item."
+                      }
+                    },
+                    {
+                      "type": "reference",
+                      "local": "StorageItemWithKey",
+                      "imported": "StorageItemWithKey",
+                      "specifier": "../../../types",
+                      "typeObject": {
+                        "type": "alias",
+                        "id": "StorageItemWithKey",
+                        "name": "StorageItemWithKey",
+                        "value": {
+                          "type": "intersection",
+                          "types": [
+                            {
+                              "type": "identifier",
+                              "name": "StorageItemBase",
+                              "typeObject": {
+                                "type": "interface",
+                                "id": "StorageItemBase",
+                                "name": "StorageItemBase",
+                                "extends": [],
+                                "properties": {
+                                  "lastModified": {
+                                    "type": "property",
+                                    "name": "lastModified",
+                                    "value": {
+                                      "type": "identifier",
+                                      "name": "Date"
+                                    },
+                                    "optional": true,
+                                    "description": "Creation date of the object.",
+                                    "default": null
+                                  },
+                                  "size": {
+                                    "type": "property",
+                                    "name": "size",
+                                    "value": { "type": "number" },
+                                    "optional": true,
+                                    "description": "Size of the body in bytes.",
+                                    "default": null
+                                  },
+                                  "eTag": {
+                                    "type": "property",
+                                    "name": "eTag",
+                                    "value": { "type": "string" },
+                                    "optional": true,
+                                    "description": "An entity tag (ETag) is an opaque identifier assigned by a web server to a specific version of a resource found at\na URL.",
+                                    "default": null
+                                  },
+                                  "metadata": {
+                                    "type": "property",
+                                    "name": "metadata",
+                                    "value": {
+                                      "type": "application",
+                                      "base": {
+                                        "type": "identifier",
+                                        "name": "Record"
+                                      },
+                                      "typeParameters": [
+                                        { "type": "string" },
+                                        { "type": "string" }
+                                      ]
+                                    },
+                                    "optional": true,
+                                    "description": "The user-defined metadata for the object uploaded to S3.",
+                                    "default": null
+                                  }
+                                },
+                                "typeParameters": [],
+                                "description": "Base type for a storage item."
+                              }
+                            },
+                            {
+                              "type": "object",
+                              "properties": {
+                                "key": {
+                                  "type": "property",
+                                  "name": "key",
+                                  "value": { "type": "string" },
+                                  "optional": false,
+                                  "access": "private",
+                                  "default": null
+                                }
+                              }
+                            }
+                          ]
+                        },
+                        "typeParameters": [],
+                        "description": null,
+                        "access": "private"
+                      }
+                    }
+                  ]
+                },
+                "typeParameters": [],
+                "description": null,
+                "access": "private"
+              }
+            }
+          ]
+        },
+        "typeParameters": [],
+        "description": "Output type for S3 uploadData API.",
+        "access": "private"
+      }
+    },
+    "typeParameters": [],
+    "description": "Upload data to the specified S3 object key. By default uses single PUT operation to upload if the payload is less than 5MB.\nOtherwise, uses multipart upload to upload the payload. If the payload length cannot be determined, uses multipart upload.\n\nLimitations:\n* Maximum object size is 5TB.\n* Maximum object size if the size cannot be determined before upload is 50GB.",
+    "access": "private",
+    "example": [
+      "ts\n// Upload a file to s3 bucket\nawait uploadData({ key, data: file, options: {\n  onProgress, // Optional progress callback.\n} }).result;\n",
+      "ts\n// Cancel a task\nconst uploadTask = uploadData({ key, data: file });\n//...\nuploadTask.cancel();\ntry {\n  await uploadTask.result;\n} catch (error) {\n  if(isCancelError(error)) {\n    // Handle error thrown by task cancelation.\n  }\n}\n",
+      "ts\n// Pause and resume a task\nconst uploadTask = uploadData({ key, data: file });\n//...\nuploadTask.pause();\n//...\nuploadTask.resume();\n//...\nawait uploadTask.result;\n"
+    ],
+    "returnExample": "import { list } from 'aws-amplify/storage';\n\n// This is just a placeholder no return example existed for this function \ntry {\n    const result = await list({\n        path: 'photos/'\n        // Alternatively, path: ({identityId}) => `album/{identityId}/photos/`\n    });\n} catch (error) {\n    console.log(error);\n}",
+    "throws": [
+      {
+        "type": "service",
+        "errorName": "S3Exception",
+        "message": "S3 service errors thrown when checking for existence of bucket"
+      },
+      {
+        "type": "validation",
+        "errorName": "StorageValidationErrorCode",
+        "message": "thrown when there are issues with credentials"
+      }
+    ]
+  }
+}
