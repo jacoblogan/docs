@@ -20,6 +20,11 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: Set github commit user
+        run: |
+          git config --global user.email jacob.maiola.logan@gmail.com
+          git config --global user.name jacoblogan
+
         # Set branch name to be used as environment variable
       - name: Set Branch Name
         run: echo "BRANCH_NAME=$(echo $(date +%s))" >> $GITHUB_ENV
