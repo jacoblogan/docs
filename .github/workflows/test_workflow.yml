@@ -18,7 +18,7 @@ jobs:
 
       - name: update file
         run: |
-          echo "$(date + '%Y-%m-%d %H:%M:%S')" > src/pages/gen1/index.tsx
+          echo "$(date + '%Y-%m-%d %H:%M:%S')" > src/pages/index.tsx
 
       - name: Commit changes
         run: |
