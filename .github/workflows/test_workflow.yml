@@ -1,0 +1,51 @@
+name: Test Failure
+on:
+  workflow_dispatch
+
+env:
+  API_FILE: 'src/pages/index.tsx'
+
+jobs:
+  TestWorkflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
+      - name: Setup Node.js 20
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: 20.x
+      - name: update file
+        run: |
+          echo "$(date + '%Y-%m-%d %H:%M:%S')" > src/pages/index.tsx
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+
+      # Check if the API Docs have been updated
+      - name: Check for updated api docs
+        id: api_docs_updated
+        run: |
+          if git diff --cached --quiet -- ${{ env.API_FILE }}; then
+            echo "API docs have not changed"
+            echo "::set-output name=updated::false"
+          else
+            echo "::set-output name=updated::true"
+            echo "API docs have been updated"
+          fi
+
+      # Fail this step if api docs have not been updated but continue running the workflow
+      - name: API Docs not updated
+        if: steps.api_docs_updated.outputs.updated == 'false'
+        run: |
+          echo "API Docs Have not been updated if API changes have been made please verify they are in the release"
+          exit 1
+        continue-on-error: true
+
+      - name: NEXT STEP
+        run: |
+          echo "This is the final STEP"
+
