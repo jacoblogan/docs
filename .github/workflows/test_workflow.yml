@@ -16,6 +16,10 @@ jobs:
         with:
           node-version: 20.x
 
+      - name: update file
+        run: |
+          echo "$(date + '%Y-%m-%d %H:%M:%S')" > src/pages/gen1/index.tsx
+
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
