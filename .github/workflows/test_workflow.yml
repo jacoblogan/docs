@@ -32,9 +32,9 @@ jobs:
         run: |
           if git diff --cached --quiet -- ${{ env.API_FILE }}; then
             echo "API docs have not changed"
-            echo "::set-output name=updated::false"
+            echo "updated=false" >> $GITHUB_OUTPUT
           else
-            echo "::set-output name=updated::true"
+            echo "updated=true" >> $GITHUB_OUTPUT
             echo "API docs have been updated"
           fi
 
