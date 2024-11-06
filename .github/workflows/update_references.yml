@@ -6,20 +6,11 @@ on:
     types: [update-references]
   workflow_dispatch:
 permissions:
-  actions: write
-  attestations: write
-  checks: write
   contents: write
   deployments: write
   id-token: write
   issues: write
-  discussions: write
-  packages: write
-  pages: write
   pull-requests: write
-  repository-projects: write
-  security-events: write
-  statuses: write
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
